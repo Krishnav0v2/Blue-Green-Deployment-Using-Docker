@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Pirate_Moviz</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h4>Welcome To</h4>
+    <h2>PirateMoviz<sub>.com</sub>2</h2>
+	
+	<form th:action="@{/search}" method="get" >
+		<input type="text" name="title" id="title" placeholder="Search Here....." required><br>
+		<button type="submit">Search</button>
+	</form>
+	<br><br>
+	<table border=1 th:if="${users != null and !#lists.isEmpty(users)}">
+		<tr>
+			<th>Title : </th>
+			<th>Link : </th>
+		</tr>
+		
+		<tr th:each="user : ${users}">
+			<td th:text="${#strings.replace(
+                 #strings.replace(
+                   #strings.replace(user.title, ' – HUBLinks', ''),
+                 '.x264.ESubs.mkv', ''),
+               '.', ' ')}">
+			</td>
+		<!-- 	<td th:text="${#strings.replace(#strings.replace(user.title, ' – HUBLinks', ''), '.x264.ESubs.mkv', '')}"></td>   -->
+			<td>
+			<a th:href="${user.url}" target="_blank">Download</a>
+			</td>
+		</tr>
+		
+	</table>
+	<p th:if="${users != null and #lists.isEmpty(users)}">
+    No results found
+</p>
+	
+	<script>
+    const searchBox = document.getElementById("title");
+
+    document.addEventListener("keydown", function(e) {
+        // Ignore if user is typing in another input or textarea
+        if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
+            searchBox.focus();
+        }
+    });
+</script>
+	
+</body>
+</html>

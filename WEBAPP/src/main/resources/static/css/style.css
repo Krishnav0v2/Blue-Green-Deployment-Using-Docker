@@ -1,0 +1,135 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Body ===== */
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+/* ===== Headings ===== */
+h4 {
+    font-weight: 300;
+    color: #94a3b8;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #38bdf8;
+    animation: slideDown 0.8s ease-in-out;
+}
+
+/* ===== Form ===== */
+form {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0ea5e9;
+    transform: scale(1.1);
+}
+
+/* ===== Table ===== */
+table {
+    margin: 30px auto;
+    width: 80%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-in;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+th {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+}
+
+td {
+    color: #e2e8f0;
+}
+
+tr:hover {
+    background: rgba(56, 189, 248, 0.1);
+    transition: 0.3s;
+}
+
+/* ===== Links ===== */
+a {
+    text-decoration: none;
+    color: #38bdf8;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #0ea5e9;
+}
+
+/* ===== No result text ===== */
+p {
+    margin-top: 20px;
+    color: #f87171;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slideDown {
+    from {transform: translateY(-30px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+@keyframes fadeInUp {
+    from {transform: translateY(20px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+};

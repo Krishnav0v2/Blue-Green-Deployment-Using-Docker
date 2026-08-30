@@ -1,0 +1,89 @@
+services:
+
+  # =========================
+  # BLUE - Current version
+  # =========================
+
+  app-blue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: app-blue
+
+    restart: unless-stopped
+
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+    expose:
+      - "8080"
+
+    networks:
+      - app_network
+      - mysql_network
+
+
+  # =========================
+  # GREEN - New version
+  # =========================
+
+  app-green:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: app-green
+
+    restart: unless-stopped
+
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+    expose:
+      - "8080"
+
+    networks:
+      - app_network
+      - mysql_network
+
+
+  # =========================
+  # NGINX
+  # =========================
+
+  nginx:
+    image: nginx:alpine
+
+    container_name: nginx
+
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+    depends_on:
+      - app-blue
+
+    networks:
+      - app_network
+
+
+# =========================
+# Networks
+# =========================
+
+networks:
+
+  # Network used by Nginx + Spring Boot
+  app_network:
+
+  # EXISTING network containing mysql-container
+  mysql_network:
+    external: true
+    name: mysql-network
